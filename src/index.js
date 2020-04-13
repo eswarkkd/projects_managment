@@ -7,8 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import * as serviceWorker from './serviceWorker';
-//import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
-/*import Login from './components/login';
+/*import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
+import Login from './components/login';
 import Dashbaord from './components/dashboard';
 import AddProject from './components/add_project';
 import Projects from './components/projects';
@@ -17,8 +17,8 @@ import ViewProject from './components/view_project';*/
 import './styles.css';
 ReactDOM.render(
   <React.StrictMode>
-    <div>weqrwqe<div>
-	/*<Router>
+   <div>erqwr</div>
+	{/*<Router>
 		<div>
 			<Route exact path="/" component={Login}></Route>
 			<Route exact path="/dashboard" component={Dashbaord}></Route>
@@ -27,7 +27,7 @@ ReactDOM.render(
 			<Route exact path="/edit_project/:id" component={Editproject}></Route>
 			<Route exact path="/view_project/:id" component={ViewProject}></Route>
 		</div>
-	</Router>*/
+	</Router>*/}
 	
   </React.StrictMode>,
   document.getElementById('root')
