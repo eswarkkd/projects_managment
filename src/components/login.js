@@ -26,7 +26,7 @@ class Login extends Component{
 			headers:{},
 			data:{username:username,password:password}
 		}).then((result)=>{
-			if(result.status==200){
+			if(result.status===200){
 				if(result.data.status){
 					localStorage.setItem('token',result.data.token);				
 					localStorage.setItem('username',result.data.username);				
@@ -41,7 +41,7 @@ class Login extends Component{
 	}
 	
 	render(){
-		if(this.state.isLogin==1){ 
+		if(this.state.isLogin===1){ 
 			return <Redirect to="/dashboard" /> 
 		};
 		const classes = makeStyles();

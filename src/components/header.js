@@ -19,7 +19,7 @@ class Header extends Component{
 		this.setState({token:""});
 	}	
 	render(){
-		if(this.state.token == ""){ 
+		if(this.state.token === ""){ 
 			return <Redirect to="/" /> 
 		};
 		return <div className="header_div"><div className="header">

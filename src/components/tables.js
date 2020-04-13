@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -8,10 +8,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import Button from '@material-ui/core/Button';
-import {Link,Redirect} from 'react-router-dom';
+//import Button from '@material-ui/core/Button';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
-import Projects from './projects';
+//import Projects from './projects';
 const columns = [
   { id: 'title', label: 'Title', minWidth: 170 },
   { id: 'description', label: 'Description', minWidth: 100 },
@@ -37,12 +37,12 @@ const columns = [
     format: (value) => value.toFixed(2),
   },*/
 ];
-
+/*
 function createData(title, description, population, size) {
 
   return { title, description, population, size };
 }
-/*
+
 const rows = [
   createData('India', 'IN', 1324171354, 3287263),
   createData('China', 'CN', 1403500365, 9596961),
@@ -93,7 +93,7 @@ export default function StickyHeadTable(props) {
 					headers:{'authentication':localStorage.getItem('token') },
 					data:{id:id}
 				}).then((result)=>{
-					if(result.status==200){
+					if(result.status===200){
 						if(result.data.status){
 							resolve(result.data.status);
 						}else{
@@ -118,9 +118,10 @@ export default function StickyHeadTable(props) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  {rows = props.data; rows.reverse()}
+  
+	  rows = props.data; rows.reverse();
 	  
-	if(rowsupdate == 1){ 
+	if(rowsupdate === 1){ 
 		window.location.reload();
 	};
   return (
@@ -149,9 +150,9 @@ export default function StickyHeadTable(props) {
                     const value = row[column.id];
                     return (
                       <TableCell key={column.id} align={column.align}>
-					  {column.id=="options" ? <div className="button_divs"><Link to={"view_project/"+object_id }>View</Link> </div> : "" }
-					  {column.id=="options" ? <div className="button_divs"><Link to={"edit_project/"+object_id }>Edit</Link> </div> : "" }
-					  {column.id=="options" ? <div className="button_divs"><a href="javascript:void(0)" key={"options"} id="options" onClick={ ()=>{deleteProject(object_id)} }>Delete</a></div> : "" }
+					  {column.id==="options" ? <div className="button_divs"><Link to={"view_project/"+object_id }>View</Link> </div> : "" }
+					  {column.id==="options" ? <div className="button_divs"><Link to={"edit_project/"+object_id }>Edit</Link> </div> : "" }
+					  {column.id==="options" ? <div className="button_divs"><a href="javascript:void(0)" key={"options"} id="options" onClick={ ()=>{deleteProject(object_id)} }>Delete</a></div> : "" }
                         {column.format && typeof value === 'number' ? column.format(value) : value}
                       </TableCell>
                     );
