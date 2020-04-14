@@ -5,6 +5,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom';
+import endpoints from './endpoints';
 
 class Login extends Component{
 	constructor(props){
@@ -22,7 +23,7 @@ class Login extends Component{
 		
 		axios({
 			method:'post',
-			url:'http://localhost:3434/users/user_login',
+			url:endpoints.basepath+endpoints.login,
 			headers:{},
 			data:{username:username,password:password}
 		}).then((result)=>{
@@ -41,17 +42,14 @@ class Login extends Component{
 	}
 	
 	render(){
-		if(this.state.isLogin===1){ 
+		{if(this.state.isLogin===1){ 
 			return <Redirect to="/dashboard" /> 
-		};
+		}}
 		const classes = makeStyles();
 		return(
 		
 			<div>
 				<div className="login_container">
-				
-				
-				
 				<form onSubmit={this.userLogin.bind(this)}>
 					<div className="login_box">
 						<div className="login_heading">Login</div>

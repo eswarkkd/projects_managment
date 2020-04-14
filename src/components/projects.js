@@ -6,12 +6,13 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import axios from 'axios';
 import StickyHeadTable from './tables';
 import Header from './header';
+import endpoints from './endpoints';
 
-class Dashboard extends Component{
+class Projects extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			projectsCount:"",
+			projects:[],
 			errorMessage:""
 		}
 		
@@ -19,23 +20,25 @@ class Dashboard extends Component{
 	componentDidMount(){
 		axios({
 			method:'post',
-			url:'http://localhost:3434/projects/',
+			url:endpoints.basepath+endpoints.projects,
 			headers:{'authentication':localStorage.getItem('token') },
 			data:{}
 		}).then((result)=>{
 			if(result.status==200){
 				if(result.data.status){
-					this.setState({errorMessage:"",projectsCount:result.data.projects.length});
+				var projectsData = result.data.projects;
+					projectsData=projectsData.reverse();
+					this.setState({errorMessage:"",projects:result.data.projects});
 				}else{
 					this.setState({errorMessage:result.data.message});
 				}				
-			}else{
-			this.setState({errorMessage:"Error occured while fetching data."});			
 			}
-
-		}).catch((error)=>{ this.setState({errorMessage:"Error occured while fetching data."}); });
+		}).catch((error)=>{ this.setState({errorMessage:"Error occured"}); });
+		
 	}
+	
 	render(){
+		{console.log(this.state.projects)}
 		const classes = makeStyles();
 		return(
 			<div className="container_class">
@@ -45,13 +48,10 @@ class Dashboard extends Component{
 						<Header />
 					</div>
 					<div className="col-sm-9 page_container">
-						<div className="row">
-							<div className="col-sm-12"><div className="heading_class">Add Project</div></div>
-						</div>
-						<div className="text-center">
 
-						<div className="errors_class">{this.state.errorMessage}</div>
-						<h1>Total projects {this.state.projectsCount}</h1></div>
+						
+						<div className="heading_class">Dashboard</div>
+						<StickyHeadTable data={this.state.projects} />
 					</div>
 				</div>
 				
@@ -61,4 +61,4 @@ class Dashboard extends Component{
 	}
 	
 }
-export default Dashboard;
+export default Projects;

@@ -6,6 +6,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import axios from 'axios';
 import Header from './header';
 import videoIcon from '../images/video_icon.png';
+import endpoints from './endpoints';
 
 class ViewProject extends Component{
 	constructor(props){
@@ -38,7 +39,7 @@ class ViewProject extends Component{
 		
 		axios({
 			method:'post',
-			url:'http://localhost:3434/projects/get_project',
+			url:endpoints.basepath+endpoints.get_project,
 			headers:{'authentication':token},
 			data:{id:this.props.match.params.id}
 		}).then((result)=>{ 

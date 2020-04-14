@@ -6,6 +6,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import axios from 'axios';
 import Header from './header';
 import videoIcon from '../images/video_icon.png';
+import endpoints from './endpoints';
 
 class Editproject extends Component{
 	constructor(props){
@@ -53,7 +54,7 @@ class Editproject extends Component{
 		
 		axios({
 			method:'post',
-			url:'http://localhost:3434/projects/get_project',
+			url:endpoints.basepath+endpoints.get_project,
 			headers:{'authentication':token},
 			data:{id:this.props.match.params.id}
 		}).then((result)=>{ 
@@ -74,7 +75,7 @@ class Editproject extends Component{
 		// gallery
 		axios({
 			method:'post',
-			url:'http://localhost:3434/projects/gallery',
+			url:endpoints.basepath+endpoints.gallery,
 			headers:{'authentication':token}
 		}).then((result)=>{ 
 			if(result.status==200){
@@ -158,7 +159,7 @@ class Editproject extends Component{
 		this.setState({formSubmit:1});
 		axios({
 			method:'post',
-			url:'http://localhost:3434/projects/update_project',
+			url:endpoints.basepath+endpoints.udpate_project,
 			headers:{'Content-type':'multipart/form-data','authentication':token},
 			data:formData
 		}).then((result)=>{ 
@@ -239,7 +240,7 @@ class Editproject extends Component{
 												<div className="float_class">
 												<div>
 													<div className="thumbnail" onClick={()=>{alert("Player not integreated.");}}>
-														<img src={(file.type=="image")?"http://localhost:3434/uploades/"+file.image:videoIcon} />
+														<img src={(file.type=="image")?endpoints.basepath+"/uploades/"+file.image:videoIcon} />
 													</div>								
 													<div className="text-center">
 														<Button color="primary" variant="contained" className={classes.button} size="small" key={file.image} onClick={()=>{this.addMedia(this,file.image)}}>Add</Button>
@@ -270,7 +271,7 @@ class Editproject extends Component{
 											return (
 											<div className="float_class">
 											<div>
-												<div className="thumbnail"><img src={"http://localhost:3434/uploades/"+file} /></div>
+												<div className="thumbnail"><img src={ endpoints.basepath+"/uploades/"+file} /></div>
 												<div className="text-center">
 													<Button size="small" onClick={this.removeImages.bind(this,file)}>Delete</Button>
 												</div>

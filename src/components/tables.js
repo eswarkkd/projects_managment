@@ -12,6 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 //import Projects from './projects';
+import endpoints from './endpoints';
 const columns = [
   { id: 'title', label: 'Title', minWidth: 170 },
   { id: 'description', label: 'Description', minWidth: 100 },
@@ -89,7 +90,7 @@ export default function StickyHeadTable(props) {
 				
 				axios({
 					method:'post',
-					url:'http://localhost:3434/projects/delete_project',
+					url:endpoints.basepath+endpoints.delete_project,
 					headers:{'authentication':localStorage.getItem('token') },
 					data:{id:id}
 				}).then((result)=>{

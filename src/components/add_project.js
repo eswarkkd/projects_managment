@@ -6,6 +6,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import axios from 'axios';
 import Header from './header';
 import videoIcon from '../images/video_icon.png';
+import endpoints from './endpoints';
 
 class AddProject extends Component{
 	constructor(props){
@@ -60,7 +61,7 @@ class AddProject extends Component{
 		// gallery
 		axios({
 			method:'post',
-			url:'http://localhost:3434/projects/gallery',
+			url:endpoints.basepath+endpoints.gallery,
 			headers:{'authentication':token}
 		}).then((result)=>{ 
 			if(result.status==200){
@@ -106,7 +107,7 @@ class AddProject extends Component{
 		this.setState({formSubmit:1});
 		axios({
 			method:'post',
-			url:'http://localhost:3434/projects/create_project',
+			url:endpoints.basepath+endpoints.create_project,
 			headers:{'Content-type':'multipart/form-data','authentication':token},
 			data:formData
 		}).then((result)=>{ 
@@ -187,7 +188,7 @@ class AddProject extends Component{
 											<div className="float_class">
 											<div>
 												<div className="thumbnail" onClick={()=>{alert("Player not integreated.");}}>
-													<img src={(file.type=="image")?"http://localhost:3434/uploades/"+file.image:videoIcon} />
+													<img src={(file.type=="image")?endpoints.basepath+"/uploades/"+file.image:videoIcon} />
 												</div>
 												<div className="text-center">
 													<Button size="small" color="primary" variant="contained" className={classes.button} key={file.image} onClick={()=>{this.addMedia(this,file.image)}}>Add</Button>
